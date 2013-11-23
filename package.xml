@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+  <name>trep_ros</name>
+  <version>0.0.1</version>
+  <description>The trep_ros package</description>
+
+  <maintainer email="davetcoleman@gmail.com">Dave Coleman</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">https://github.com/davetcoleman/trep_ros</url>
+  <url type="butracker">https://github.com/davetcoleman/trep_ros/issues</url>
+  <url type="repository">https://github.com/davetcoleman/trep_ros/</url>
+
+  <author email="davetcoleman@gmail.com">Dave Coleman</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>kdl_parser</build_depend>
+  <build_depend>moveit_core</build_depend>
+  <build_depend>moveit_ros_planning</build_depend>
+  <build_depend>roscpp</build_depend>
+
+  <run_depend>geometry_msgs</run_depend>
+  <!--run_depend>kdl_parser</run_depend-->
+  <run_depend>moveit_core</run_depend>
+  <run_depend>moveit_ros_planning</run_depend>
+  <run_depend>roscpp</run_depend>
+
+
+  <export>
+  </export>
+</package>
