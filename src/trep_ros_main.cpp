@@ -42,7 +42,7 @@
 #include <fstream>
 #include <moveit/robot_model_loader/robot_model_loader.h>
 #include <geometry_msgs/Vector3.h>
-#include <trep_ros/trep_ros.h>
+//#include <trep_ros/trep_ros.h>
 
 int main(int argc, char** argv)
 {
@@ -72,7 +72,7 @@ int main(int argc, char** argv)
   // Leave empty for now
   const geometry_msgs::Vector3 gravity_vector;
 
-  trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
+  //  trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
 
   ROS_INFO_STREAM_NAMED("trep_ros","Shutting down.");
 
