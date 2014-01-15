@@ -124,6 +124,9 @@ public:
     double payload,
     std::vector<double> &joint_torques) const;
 
+  // Dave testing
+  void runTest();
+
   /**
    * @brief Get maximum torques for this group
    * @return Vector of max torques

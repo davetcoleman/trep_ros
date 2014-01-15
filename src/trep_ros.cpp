@@ -102,17 +102,21 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
     return;
   }
 
-ROS_INFO_STREAM_NAMED("temp","here3");
-
   base_name_ = joint->getParentLinkModel()->getName();
 
   tip_name_ = joint_model_group_->getLinkModelNames().back();
   logDebug("Dynamics Solver: Base name: '%s', Tip name: '%s'", base_name_.c_str(), tip_name_.c_str());
 
+  // Debug info
+  ROS_INFO_STREAM_NAMED("temp","Group Name: " << group_name );
+  ROS_INFO_STREAM_NAMED("temp","Root joint: " << joint->getName() );
+  ROS_INFO_STREAM_NAMED("temp","Base Name: " << base_name_ );
+  ROS_INFO_STREAM_NAMED("temp","Tip Name: " << tip_name_ );
+
   const boost::shared_ptr<const urdf::ModelInterface> urdf_model = robot_model_->getURDF();
   const boost::shared_ptr<const srdf::Model> srdf_model = robot_model_->getSRDF();
   KDL::Tree tree;
-ROS_INFO_STREAM_NAMED("temp","here4");
+
   if (!kdl_parser::treeFromUrdfModel(*urdf_model, tree))
   {
     logError("Could not initialize tree object");
@@ -139,12 +143,15 @@ ROS_INFO_STREAM_NAMED("temp","here4");
       max_torques_.push_back(ujoint->limits->effort);
     else
       max_torques_.push_back(0.0);
+
+    ROS_INFO_STREAM_NAMED("temp","joint model name: " << joint_model_names[i]);
   }
 
   KDL::Vector gravity(gravity_vector.x, gravity_vector.y, gravity_vector.z); // \todo Not sure if KDL expects the negative of this (Sachin)
   gravity_ = gravity.Norm();
   logDebug("Gravity norm set to %f", gravity_);
-ROS_INFO_STREAM_NAMED("temp","here5");
+  ROS_DEBUG_STREAM_NAMED("temp","Gravity norm set to " << gravity_);
+
   chain_id_solver_.reset(new KDL::ChainIdSolver_RNE(kdl_chain_, gravity));
 }
 
@@ -316,9 +323,31 @@ bool TrepROS::getPayloadTorques(const std::vector<double> &joint_angles,
   return true;
 }
 
+void TrepROS::runTest()
+{
+  std::vector<double> joint_angles;
+
+  for (std::size_t i = 0; i < 7; ++i)
+  {
+    joint_angles.push_back(0.2);
+  }
+
+  std::vector<double> joint_velocities(num_joints_, 0.0);
+  std::vector<double> joint_accelerations(num_joints_, 0.0);
+  std::vector<double> torques(num_joints_, 0.0);
+  std::vector<double> zero_torques(num_joints_, 0.0);
+  std::vector<geometry_msgs::Wrench> wrenches(num_segments_);
+
+  getTorques(joint_angles, joint_velocities, joint_accelerations, wrenches, zero_torques);
+
+  std::copy(zero_torques.begin(), zero_torques.end(), std::ostream_iterator<double>(std::cout, "\n"));
+}
+
 const std::vector<double>& TrepROS::getMaxTorques() const
 {
   return max_torques_;
 }
+
+
 
 }

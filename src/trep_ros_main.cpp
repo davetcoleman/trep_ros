@@ -78,11 +78,24 @@ int main(int argc, char** argv)
   const robot_model::RobotModelPtr robot_model = rloader.getModel();
 
   const std::string group_name = "left_arm";
-  
+
   // Leave empty for now
   const geometry_msgs::Vector3 gravity_vector;
 
+  // Initiate
   trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
+
+  // Do Calc ----------------------------------------------------------------------
+  //  tester.runTest();
+  std::vector<double> joint_angles;
+  for (std::size_t i = 0; i < 7; ++i)
+  {
+    joint_angles.push_back(0.2);
+  }
+  double payload;
+  unsigned int joint_saturated;
+  tester.getMaxPayload(joint_angles, payload, joint_saturated);
+  ROS_INFO_STREAM_NAMED("temp","joint: " << joint_saturated << " Payload: " << payload);
 
   ROS_INFO_STREAM_NAMED("trep_ros","Shutting down.");
 
