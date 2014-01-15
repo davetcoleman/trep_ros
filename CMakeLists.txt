@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(Boost REQUIRED COMPONENTS system)
+find_package(orocos_kdl REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -20,7 +21,9 @@ catkin_package(
   DEPENDS Eigen
 )
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(include ${orocos_kdl_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+
+link_directories(${orocos_kdl_LIBRARY_DIRS})
 
 # output all variables
 #get_cmake_property(_variableNames VARIABLES)
@@ -30,10 +33,10 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_library(trep_ros src/trep_ros.cpp)
 add_dependencies(trep_ros ${catkin_EXPORTED_TARGETS})
-target_link_libraries(trep_ros ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(trep_ros ${orocos_kdl_LIBRARIES} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(trep_ros_main src/trep_ros_main.cpp)
 add_dependencies(trep_ros_main trep_ros ${catkin_EXPORTED_TARGETS})
-target_link_libraries(trep_ros_main ${catkin_LIBRARIES})
+target_link_libraries(trep_ros_main trep_ros ${orocos_kdl_LIBRARIES} ${catkin_LIBRARIES})
 
 

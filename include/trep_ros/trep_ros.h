@@ -47,6 +47,9 @@
 #include <geometry_msgs/Vector3.h>
 #include <geometry_msgs/Wrench.h>
 
+// ROS
+#include <ros/ros.h>
+
 /** \brief This namespace includes the dynamics_solver library */
 namespace trep_ros
 {

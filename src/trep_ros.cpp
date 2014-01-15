@@ -75,7 +75,10 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
   robot_model_ = robot_model;
   joint_model_group_ = robot_model_->getJointModelGroup(group_name);
   if (!joint_model_group_)
+  {
+    ROS_ERROR_STREAM_NAMED("trep","No joint model group found for '" << group_name << "'");
     return;
+  }
 
   if (!joint_model_group_->isChain())
   {
@@ -99,6 +102,8 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
     return;
   }
 
+ROS_INFO_STREAM_NAMED("temp","here3");
+
   base_name_ = joint->getParentLinkModel()->getName();
 
   tip_name_ = joint_model_group_->getLinkModelNames().back();
@@ -107,7 +112,7 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
   const boost::shared_ptr<const urdf::ModelInterface> urdf_model = robot_model_->getURDF();
   const boost::shared_ptr<const srdf::Model> srdf_model = robot_model_->getSRDF();
   KDL::Tree tree;
-
+ROS_INFO_STREAM_NAMED("temp","here4");
   if (!kdl_parser::treeFromUrdfModel(*urdf_model, tree))
   {
     logError("Could not initialize tree object");
@@ -139,7 +144,7 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
   KDL::Vector gravity(gravity_vector.x, gravity_vector.y, gravity_vector.z); // \todo Not sure if KDL expects the negative of this (Sachin)
   gravity_ = gravity.Norm();
   logDebug("Gravity norm set to %f", gravity_);
-
+ROS_INFO_STREAM_NAMED("temp","here5");
   chain_id_solver_.reset(new KDL::ChainIdSolver_RNE(kdl_chain_, gravity));
 }
 

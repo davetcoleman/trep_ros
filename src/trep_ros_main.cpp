@@ -42,7 +42,7 @@
 #include <fstream>
 #include <moveit/robot_model_loader/robot_model_loader.h>
 #include <geometry_msgs/Vector3.h>
-//#include <trep_ros/trep_ros.h>
+#include "trep_ros/trep_ros.h"
 
 int main(int argc, char** argv)
 {
@@ -57,7 +57,17 @@ int main(int argc, char** argv)
   std::ifstream in_srdf("baxter.srdf");
   std::string srdf_string((std::istreambuf_iterator<char>(in_srdf)), std::istreambuf_iterator<char>());
 
-  ROS_INFO_STREAM_NAMED("temp","here " << urdf_string);
+  // Error check
+  if (srdf_string.empty())
+  {
+    ROS_ERROR_STREAM_NAMED("main","No SRDF string found");
+    exit(1);
+  }
+  if (urdf_string.empty())
+  {
+    ROS_ERROR_STREAM_NAMED("main","No URDF string found");
+    exit(1);
+  }
 
   // Load the robot model
   robot_model_loader::RobotModelLoader::Options model_opts(urdf_string, srdf_string);
@@ -66,13 +76,13 @@ int main(int argc, char** argv)
 
   // Get the robot model from the loader
   const robot_model::RobotModelPtr robot_model = rloader.getModel();
-  
+
   const std::string group_name = "left_arm";
   
   // Leave empty for now
   const geometry_msgs::Vector3 gravity_vector;
 
-  //  trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
+  trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
 
   ROS_INFO_STREAM_NAMED("trep_ros","Shutting down.");
 
