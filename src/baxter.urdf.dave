@@ -16,7 +16,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://baxter_description/meshes/torso/base_link_collision.DAE"/>
+        <mesh filename="package://baxter_description/meshes/torso/base_link_simple.DAE"/>
       </geometry>
     </collision>
     <inertial>
@@ -28,39 +28,39 @@
   <link name="left_torso_itb">
     <!-- note: invisible -->
     <!--
-         <visual>
-  	   <origin xyz="0 0 0" rpy="0 0 0" />
-           <geometry>
-             <box size=".059 0.118  0.032" />
-           </geometry>
-           <material name="white">
-             <color rgba="1 1 1 1" />
-           </material>
-         </visual>
-         -->
+	<visual>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+	<box size=".059 0.118  0.032" />
+	</geometry>
+	<material name="white">
+	<color rgba="1 1 1 1" />
+	</material>
+	</visual>
+    -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_torso_itb">
     <!-- note: invisible -->
     <!--
-         <visual>
-  	   <origin xyz="0 0 0" rpy="0 0 0" />
-           <geometry>
-             <box size=".059 0.118  0.032" />
-           </geometry>
-           <material name="white">
-             <color rgba="1 1 1 1" />
-           </material>
-         </visual>
-         -->
+	<visual>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+	<box size=".059 0.118  0.032" />
+	</geometry>
+	<material name="white">
+	<color rgba="1 1 1 1" />
+	</material>
+	</visual>
+    -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="pedestal">
@@ -69,16 +69,25 @@
       <geometry>
         <mesh filename="package://baxter_description/meshes/base/PEDESTAL.DAE"/>
       </geometry>
-      <material name="darkgray">
-        <color rgba=".2 .2 .2 1"/>
-      </material>
     </visual>
     <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.36"/>
+      <geometry>
+        <cylinder length="0.6" radius="0.15"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.78"/>
+      <geometry>
+        <box size="0.8 0.8 0.25"/>
+      </geometry>
+    </collision>
+    <!--collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
         <mesh filename="package://baxter_description/meshes/base/pedestal_link_collision.DAE"/>
       </geometry>
-    </collision>
+    </collision-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="60.86397744"/>
@@ -87,7 +96,7 @@
   </link>
   <link name="head">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 .00953"/>
+      <origin rpy="0 0 0" xyz="-.03477 0 .00953"/>
       <geometry>
         <!-- <cylinder length="0.04" radius="0.09"/> -->
         <mesh filename="package://baxter_description/meshes/head/H0.DAE"/>
@@ -126,8 +135,8 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="screen">
@@ -153,18 +162,33 @@
       <inertia ixx="0.004006" ixy="0.000230" ixz="0.000002" iyy="0.002800" iyz="0.000029" izz="0.001509"/>
     </inertial>
   </link>
+
+  <link name="screen_visual">
+    <visual>
+      <origin rpy="0.261666667 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.218 0.16 0.001" />
+      </geometry>
+    </visual>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.001"/>
+      <inertia ixx="0.004006" ixy="0.000230" ixz="0.000002" iyy="0.002800" iyz="0.000029" izz="0.001509"/>
+    </inertial>
+  </link>
+
   <link name="head_camera">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="dummyhead1">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="collision_head_link_1">
@@ -186,8 +210,8 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="collision_head_link_2">
@@ -210,8 +234,8 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <joint name="collision_head_1" type="fixed">
@@ -251,7 +275,7 @@
     <child link="pedestal"/>
   </joint>
   <joint name="head_pan" type="revolute">
-    <origin rpy="0 0 0" xyz="0.06 0 0.686"/>
+    <origin rpy="0 0 0" xyz="0.0947 0 0.686"/>
     <axis xyz="0 0 1"/>
     <parent link="torso"/>
     <child link="head"/>
@@ -259,12 +283,17 @@
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="head_nod" type="fixed">
-    <origin rpy="1.75057 0 1.57079632679" xyz=".1227 0 0"/>
+    <origin rpy="1.9198622 0.0 1.57079632679" xyz=".088 0.0 0.0"/>
     <parent link="head"/>
     <child link="screen"/>
   </joint>
+  <joint name="screen_visual_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.0 -0.016 0.0"/>
+    <parent link="screen"/>
+    <child link="screen_visual"/>
+  </joint>
   <joint name="head_camera" type="fixed">
-    <origin rpy="1.75057 0 1.57079632679" xyz="0.12839 0 0.06368"/>
+    <origin rpy="0.0 0.61073254 0.0" xyz="0.12839 0.0 0.06368"/>
     <parent link="head"/>
     <child link="head_camera"/>
   </joint>
@@ -278,8 +307,8 @@
     <!-- all defaults -->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_upper_shoulder">
@@ -357,8 +386,8 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_lower_elbow">
@@ -414,27 +443,27 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_arm_itb">
     <!-- note: invisible -->
     <!--
-         <visual>
-  	   <origin xyz="0 0 0" rpy="0 0 0" />
-           <geometry>
-             <box size=".059 0.118  0.032" />
-           </geometry>
-           <material name="white">
-             <color rgba="1 1 1 1" />
-           </material>
-         </visual>
-         -->
+	<visual>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+	<box size=".059 0.118  0.032" />
+	</geometry>
+	<material name="white">
+	<color rgba="1 1 1 1" />
+	</material>
+	</visual>
+    -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_lower_forearm">
@@ -482,23 +511,22 @@
     </inertial>
   </link>
   <link name="right_hand">
-    <!-- rendered in the mesh
-      <visual>
-        <origin xyz="0 0 -0.0232" rpy="0 0 0" />
-        <geometry>
-          <cylinder radius="0.04" length="0.0464" />
-        </geometry>
+    <!--
+	<visual>
+	<origin rpy="0 0 0" xyz="0 0 -0.0232"/>
+	<geometry>
+	<cylinder length="0.0464" radius="0.04"/>
+	</geometry>
         <material name="darkred">
-          <color rgba=".5 .1 .1 1" />
+	<color rgba=".5 .1 .1 1" />
         </material>
-      </visual>
-      -->
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 -0.0232"/>
-      <geometry>
+	</visual>
+	<collision>
+	<origin rpy="0 0 0" xyz="0 0 -0.0232"/>
+	<geometry>
         <cylinder length="0.0464" radius="0.04"/>
-      </geometry>
-    </collision>
+	</geometry>
+	</collision>-->
     <inertial>
       <origin rpy="0 0 0" xyz="0.01093 0.00042 -0.01532"/>
       <mass value="0.19125"/>
@@ -517,24 +545,24 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_hand_camera_axis">
     <!--visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.02" length="0.01" />
+	<cylinder radius="0.02" length="0.01" />
         </geometry>
         <material name="blue">
-          <color rgba="0 0 1 0.8" />
+	<color rgba="0 0 1 0.8" />
         </material>
-      </visual-->
+	</visual-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="right_hand_range">
@@ -549,42 +577,85 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
-  <link name="right_gripper_base">
+
+  <!-- Base of end effector -->
+  <link name="right_gripper">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.02"/>
+      <origin rpy="0 3.14 0" xyz="0.007 0.005 0"/>
       <geometry>
-        <box size="0.025 0.075 0.035"/>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/electricgripper.DAE"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.007 0.007 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.0275"/>
       </geometry>
       <material name="darkred">
         <color rgba=".5 .1 .1 1"/>
       </material>
-    </visual>
+    </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
-  <link name="right_gripper">
+
+  <!-- Finger mesh index -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00017816.DAE" /--> <!--PADDING-->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030515.DAE" /--> <!--LONG LEFT -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030516.DAE" /--> <!-- wide bracket -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030517.DAE" /--> <!-- Short left -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /--> <!--LONG RIGHT /-->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030535.DAE" /--> <!-- weird bracket -->
+
+  <!-- Left finger -->
+  <link name="right_gripper_l_finger">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0.007 -0.036 -0.0135"/>
       <geometry>
-        <box size="0.01 0.01 0.01"/>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
       </geometry>
-      <material name="black">
-        <color rgba="0 0 0 1"/>
-      </material>
     </visual>
+    <collision>
+      <origin rpy="0 -1.57079632679 0" xyz="0.007 -0.036 -0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
+
+  <!-- Right finger -->
+  <link name="right_gripper_r_finger">
+    <visual>
+      <origin rpy="0 1.57079632679 0" xyz="0.007 -0.036 0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57079632679 0" xyz="0.007 -0.036 0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
+    </inertial>
+  </link>
+
   <joint name="right_torso_arm_mount" type="fixed">
     <origin rpy="0 0 -0.7854" xyz="0.024645 -0.219645 0.118588"/>
     <parent link="torso"/>
@@ -595,7 +666,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_arm_mount"/>
     <child link="right_upper_shoulder"/>
-    <limit effort="50.0" lower="-1.70167993878" upper="1.70167993878" velocity="1.5"/>
+    <limit effort="60.0" lower="-1.70167993878" upper="1.70167993878" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_s1" type="revolute">
@@ -603,7 +674,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_upper_shoulder"/>
     <child link="right_lower_shoulder"/>
-    <limit effort="50.0" lower="-2.147" upper="1.047" velocity="1.5"/>
+    <limit effort="60.0" lower="-2.147" upper="1.047" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_e0" type="revolute">
@@ -611,7 +682,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_lower_shoulder"/>
     <child link="right_upper_elbow"/>
-    <limit effort="50.0" lower="-3.05417993878" upper="3.05417993878" velocity="1.5"/>
+    <limit effort="60.0" lower="-3.05417993878" upper="3.05417993878" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_e0_fixed" type="fixed">
@@ -625,7 +696,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_upper_elbow"/>
     <child link="right_lower_elbow"/>
-    <limit effort="50.0" lower="-0.05" upper="2.618" velocity="1.5"/>
+    <limit effort="60.0" lower="-0.05" upper="2.618" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_w0" type="revolute">
@@ -633,7 +704,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_lower_elbow"/>
     <child link="right_upper_forearm"/>
-    <limit effort="15.0" lower="-3.059" upper="3.059" velocity="4.0"/>
+    <limit effort="20.0" lower="-3.059" upper="3.059" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_w0_fixed" type="fixed">
@@ -643,6 +714,7 @@
     <child link="right_upper_forearm_visual"/>
   </joint>
   <joint name="right_w0_to_itb_fixed" type="fixed">
+    <!-- <origin xyz="-0.0565 0 0.1301" rpy="-${PI_DIV_2} 0 ${PI_DIV_2}" /> -->
     <origin rpy="-1.57079632679 0 1.57079632679" xyz="-0.0565 0 0.12"/>
     <axis xyz="0 0 1"/>
     <parent link="right_upper_forearm"/>
@@ -653,7 +725,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_upper_forearm"/>
     <child link="right_lower_forearm"/>
-    <limit effort="15.0" lower="-1.57079632679" upper="2.094" velocity="4.0"/>
+    <limit effort="20.0" lower="-1.57079632679" upper="2.094" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_w2" type="revolute">
@@ -661,7 +733,7 @@
     <axis xyz="0 0 1"/>
     <parent link="right_lower_forearm"/>
     <child link="right_wrist"/>
-    <limit effort="15.0" lower="-3.059" upper="3.059" velocity="4.0"/>
+    <limit effort="20.0" lower="-3.059" upper="3.059" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_hand" type="fixed">
@@ -672,7 +744,7 @@
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="right_hand_camera" type="fixed">
-    <origin rpy="0 0 -1.57079633" xyz="0.03825 0.012 0.015355"/>
+    <origin rpy="0 -1.57079633 0" xyz="0.03825 0.012 0.015355"/>
     <parent link="right_hand"/>
     <child link="right_hand_camera"/>
   </joint>
@@ -686,22 +758,41 @@
     <parent link="right_hand"/>
     <child link="right_hand_range"/>
   </joint>
-  <joint name="right_gripper_base" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="right_hand"/>
-    <child link="right_gripper_base"/>
-  </joint>
+
+  <!-- Base of Right end effector -->
   <joint name="right_endpoint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0 0.025"/>
-    <parent link="right_gripper_base"/>
+    <origin rpy="1.57 0 0" xyz="-0.005 0.0 0.02"/>
+    <parent link="right_hand"/>
     <child link="right_gripper"/>
   </joint>
+
+  <!-- Left finger -->
+  <joint name="right_gripper_l_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.0 0.06 0.035"/>
+    <axis xyz="0 0 1"/>
+    <parent link="right_gripper"/>
+    <child link="right_gripper_l_finger"/>
+    <limit effort="20.0" lower="-0.0125" upper="0.0095" velocity="5.0"/> <!-- upper is open -->
+    <dynamics damping="0.7" friction="0.0"/>
+  </joint>
+
+  <!-- Right finger -->
+  <joint name="right_gripper_r_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.0 0.06 -0.035"/>
+    <axis xyz="0 0 1"/>
+    <parent link="right_gripper"/>
+    <child link="right_gripper_r_finger"/>
+    <limit effort="20.0" lower="-0.0125" upper="0.0095" velocity="5.0"/> <!-- upper is open -->
+    <dynamics damping="0.7" friction="0.0"/>
+    <mimic joint="right_gripper_l_finger_joint" offset="0" multiplier="-1" />
+  </joint>
+
+  <!-- Left Arm ============================================================================ -->
   <link name="left_arm_mount">
-    <!-- all defaults -->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_upper_shoulder">
@@ -779,8 +870,8 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_lower_elbow">
@@ -836,27 +927,27 @@
     </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_arm_itb">
     <!-- note: invisible -->
     <!--
-         <visual>
-  	   <origin xyz="0 0 0" rpy="0 0 0" />
-           <geometry>
-             <box size=".059 0.118  0.032" />
-           </geometry>
-           <material name="white">
-             <color rgba="1 1 1 1" />
-           </material>
-         </visual>
-         -->
+	<visual>
+	<origin xyz="0 0 0" rpy="0 0 0" />
+	<geometry>
+	<box size=".059 0.118  0.032" />
+	</geometry>
+	<material name="white">
+	<color rgba="1 1 1 1" />
+	</material>
+	</visual>
+    -->
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_lower_forearm">
@@ -905,16 +996,16 @@
   </link>
   <link name="left_hand">
     <!-- rendered in the mesh
-      <visual>
-        <origin xyz="0 0 -0.0232" rpy="0 0 0" />
-        <geometry>
-          <cylinder radius="0.04" length="0.0464" />
-        </geometry>
-        <material name="darkred">
-          <color rgba=".5 .1 .1 1" />
-        </material>
-      </visual>
-      -->
+	 <visual>
+	 <origin xyz="0 0 -0.0232" rpy="0 0 0" />
+	 <geometry>
+	 <cylinder radius="0.04" length="0.0464" />
+	 </geometry>
+	 <material name="darkred">
+	 <color rgba=".5 .1 .1 1" />
+	 </material>
+	 </visual>
+    -->
     <collision>
       <origin rpy="0 0 0" xyz="0 0 -0.0232"/>
       <geometry>
@@ -939,24 +1030,24 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_hand_camera_axis">
     <!--visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <cylinder radius="0.02" length="0.01" />
+	<cylinder radius="0.02" length="0.01" />
         </geometry>
         <material name="blue">
-          <color rgba="0 0 1 0.8" />
+	<color rgba="0 0 1 0.8" />
         </material>
-      </visual-->
+	</visual-->
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
   <link name="left_hand_range">
@@ -971,42 +1062,85 @@
     </visual>
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
-  <link name="left_gripper_base">
+
+  <!-- Base of left end effector -->
+  <link name="left_gripper">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 -0.02"/>
+      <origin rpy="0 3.14 0" xyz="0.007 0.005 0"/>
       <geometry>
-        <box size="0.025 0.075 0.035"/>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/electricgripper.DAE"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.007 0.007 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.0275"/>
       </geometry>
       <material name="darkred">
         <color rgba=".5 .1 .1 1"/>
       </material>
-    </visual>
+    </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
-  <link name="left_gripper">
+
+  <!-- Finger mesh index -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00017816.DAE" /--> <!--PADDING-->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030515.DAE" /--> <!--LONG LEFT -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030516.DAE" /--> <!-- wide bracket -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030517.DAE" /--> <!-- Short left -->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /--> <!--LONG RIGHT /-->
+  <!--mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030535.DAE" /--> <!-- weird bracket -->
+
+  <!-- Left finger -->
+  <link name="left_gripper_l_finger">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 -1.57079632679 0" xyz="0.007 -0.036 -0.0135"/>
       <geometry>
-        <box size="0.01 0.01 0.01"/>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
       </geometry>
-      <material name="black">
-        <color rgba="0 0 0 1"/>
-      </material>
     </visual>
+    <collision>
+      <origin rpy="0 -1.57079632679 0" xyz="0.007 -0.036 -0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </collision>
     <inertial>
       <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
-      <mass value="0.0001"/>
-      <inertia ixx="1e-08" ixy="0" ixz="0" iyy="1e-08" iyz="0" izz="1e-08"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
     </inertial>
   </link>
+
+  <!-- Right finger -->
+  <link name="left_gripper_r_finger">
+    <visual>
+      <origin rpy="0 1.57079632679 0" xyz="0.007 -0.036 0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 1.57079632679 0" xyz="0.007 -0.036 0.0135"/>
+      <geometry>
+        <mesh filename="package://baxter_description/meshes/electric_gripper/fingers/00030518.DAE" /> <!-- Long left finger-->
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.000000 0.000000 0.000000"/>
+      <mass value="0.00094542"/>
+      <inertia ixx="2e-08" ixy="0" ixz="0" iyy="3e-08" iyz="0" izz="2e-08"/>
+    </inertial>
+  </link>
+
   <joint name="left_torso_arm_mount" type="fixed">
     <origin rpy="0 0 0.7854" xyz="0.024645 0.219645 0.118588"/>
     <parent link="torso"/>
@@ -1017,7 +1151,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_arm_mount"/>
     <child link="left_upper_shoulder"/>
-    <limit effort="50.0" lower="-1.70167993878" upper="1.70167993878" velocity="1.5"/>
+    <limit effort="60.0" lower="-1.70167993878" upper="1.70167993878" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_s1" type="revolute">
@@ -1025,7 +1159,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_upper_shoulder"/>
     <child link="left_lower_shoulder"/>
-    <limit effort="50.0" lower="-2.147" upper="1.047" velocity="1.5"/>
+    <limit effort="60.0" lower="-2.147" upper="1.047" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_e0" type="revolute">
@@ -1033,7 +1167,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_lower_shoulder"/>
     <child link="left_upper_elbow"/>
-    <limit effort="50.0" lower="-3.05417993878" upper="3.05417993878" velocity="1.5"/>
+    <limit effort="60.0" lower="-3.05417993878" upper="3.05417993878" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_e0_fixed" type="fixed">
@@ -1047,7 +1181,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_upper_elbow"/>
     <child link="left_lower_elbow"/>
-    <limit effort="50.0" lower="-0.05" upper="2.618" velocity="1.5"/>
+    <limit effort="60.0" lower="-0.05" upper="2.618" velocity="2.5"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_w0" type="revolute">
@@ -1055,7 +1189,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_lower_elbow"/>
     <child link="left_upper_forearm"/>
-    <limit effort="15.0" lower="-3.059" upper="3.059" velocity="4.0"/>
+    <limit effort="20.0" lower="-3.059" upper="3.059" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_w0_fixed" type="fixed">
@@ -1065,6 +1199,7 @@
     <child link="left_upper_forearm_visual"/>
   </joint>
   <joint name="left_w0_to_itb_fixed" type="fixed">
+    <!-- <origin xyz="-0.0565 0 0.1301" rpy="-${PI_DIV_2} 0 ${PI_DIV_2}" /> -->
     <origin rpy="-1.57079632679 0 1.57079632679" xyz="-0.0565 0 0.12"/>
     <axis xyz="0 0 1"/>
     <parent link="left_upper_forearm"/>
@@ -1075,7 +1210,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_upper_forearm"/>
     <child link="left_lower_forearm"/>
-    <limit effort="15.0" lower="-1.57079632679" upper="2.094" velocity="4.0"/>
+    <limit effort="20.0" lower="-1.57079632679" upper="2.094" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_w2" type="revolute">
@@ -1083,7 +1218,7 @@
     <axis xyz="0 0 1"/>
     <parent link="left_lower_forearm"/>
     <child link="left_wrist"/>
-    <limit effort="15.0" lower="-3.059" upper="3.059" velocity="4.0"/>
+    <limit effort="20.0" lower="-3.059" upper="3.059" velocity="5.0"/>
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_hand" type="fixed">
@@ -1094,7 +1229,7 @@
     <dynamics damping="0.7" friction="0.0"/>
   </joint>
   <joint name="left_hand_camera" type="fixed">
-    <origin rpy="0 0 -1.57079633" xyz="0.03825 0.012 0.015355"/>
+    <origin rpy="0 -1.57079633 0" xyz="0.03825 0.012 0.015355"/>
     <parent link="left_hand"/>
     <child link="left_hand_camera"/>
   </joint>
@@ -1108,15 +1243,33 @@
     <parent link="left_hand"/>
     <child link="left_hand_range"/>
   </joint>
-  <joint name="left_gripper_base" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-    <parent link="left_hand"/>
-    <child link="left_gripper_base"/>
-  </joint>
+
+  <!-- Base of Left end effector -->
   <joint name="left_endpoint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0 0.025"/>
-    <parent link="left_gripper_base"/>
+    <origin rpy="1.57 0 0" xyz="-0.005 0.0 0.02"/>
+    <parent link="left_hand"/>
     <child link="left_gripper"/>
+  </joint>
+
+  <!-- Left finger -->
+  <joint name="left_gripper_l_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.0 0.06 0.035"/>
+    <axis xyz="0 0 1"/>
+    <parent link="left_gripper"/>
+    <child link="left_gripper_l_finger"/>
+    <limit effort="20.0" lower="-0.0125" upper="0.0095" velocity="5.0"/> <!-- upper is open -->
+    <dynamics damping="0.7" friction="0.0"/>
+  </joint>
+
+  <!-- Left finger -->
+  <joint name="left_gripper_r_finger_joint" type="prismatic">
+    <origin rpy="0 0 0" xyz="0.0 0.06 -0.035"/>
+    <axis xyz="0 0 1"/>
+    <parent link="left_gripper"/>
+    <child link="left_gripper_r_finger"/>
+    <limit effort="20.0" lower="-0.0125" upper="0.0095" velocity="5.0"/> <!-- upper is open -->
+    <dynamics damping="0.7" friction="0.0"/>
+    <mimic joint="left_gripper_l_finger_joint" offset="0" multiplier="-1" />
   </joint>
 
   <!-- Transmissions -->
@@ -1174,6 +1327,25 @@
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_w2"/>
     <actuator name="right_motor7">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- Right Gripper -->
+  <transmission name="right_tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_gripper_l_finger_joint"/>
+    <actuator name="right_motor8">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="right_tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_gripper_r_finger_joint"/>
+    <actuator name="right_motor9">
       <hardwareInterface>EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
@@ -1237,6 +1409,25 @@
     </actuator>
   </transmission>
 
+  <!-- Left Gripper -->
+  <transmission name="left_tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_gripper_l_finger_joint"/>
+    <actuator name="left_motor8">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="left_tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_gripper_r_finger_joint"/>
+    <actuator name="left_motor9">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   <!-- Head -->
   <transmission name="head1">
     <type>transmission_interface/SimpleTransmission</type>
@@ -1252,6 +1443,17 @@
     <plugin name="baxter_ros_control" filename="libbaxter_gazebo_ros_control.so">
       <robotNamespace>/robot</robotNamespace>
     </plugin>
+  </gazebo>
+
+  <!-- Video on Baxter's Screen -->
+  <gazebo reference="screen_visual">
+    <visual>
+      <plugin name="screen_video_controller" filename="libgazebo_ros_video.so">
+	<height>600</height>
+	<width>1024</width>
+	<topicName>/sdk/xdisplay</topicName>
+      </plugin>
+    </visual>
   </gazebo>
 
   <!-- Gazebo-Specific Link Properties -->
@@ -1303,6 +1505,101 @@
   <gazebo reference="left_w2">
     <cfmDamping>1</cfmDamping>
   </gazebo>
-
+  <!-- head camera -->	
+  <gazebo reference="head_camera">
+    <sensor type="camera" name="head_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="head_camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>/cameras/head_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>head_camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>  
+  <!-- left hand camera -->	
+  <gazebo reference="left_hand_camera">
+    <sensor type="camera" name="left_hand_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="left_hand_camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>/cameras/left_hand_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>left_hand_camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <!-- right hand camera -->	
+  <gazebo reference="right_hand_camera">
+    <sensor type="camera" name="right_hand_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="right_hand_camera">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>/cameras/right_hand_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>right_hand_camera</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
 </robot>
 

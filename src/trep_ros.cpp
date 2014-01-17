@@ -105,7 +105,7 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
   base_name_ = joint->getParentLinkModel()->getName();
 
   tip_name_ = joint_model_group_->getLinkModelNames().back();
-  logDebug("Dynamics Solver: Base name: '%s', Tip name: '%s'", base_name_.c_str(), tip_name_.c_str());
+  ROS_INFO("Dynamics Solver: Base name: '%s', Tip name: '%s'", base_name_.c_str(), tip_name_.c_str());
 
   // Debug info
   ROS_INFO_STREAM_NAMED("temp","Group Name: " << group_name );
@@ -144,12 +144,11 @@ TrepROS::TrepROS(const robot_model::RobotModelConstPtr &robot_model,
     else
       max_torques_.push_back(0.0);
 
-    ROS_INFO_STREAM_NAMED("temp","joint model name: " << joint_model_names[i]);
   }
 
   KDL::Vector gravity(gravity_vector.x, gravity_vector.y, gravity_vector.z); // \todo Not sure if KDL expects the negative of this (Sachin)
   gravity_ = gravity.Norm();
-  logDebug("Gravity norm set to %f", gravity_);
+  ROS_INFO("Gravity norm set to %f", gravity_);
   ROS_DEBUG_STREAM_NAMED("temp","Gravity norm set to " << gravity_);
 
   chain_id_solver_.reset(new KDL::ChainIdSolver_RNE(kdl_chain_, gravity));
@@ -163,7 +162,7 @@ bool TrepROS::getTorques(const std::vector<double> &joint_angles,
 {
   if (!joint_model_group_)
   {
-    logDebug("Did not construct TrepROS object properly. Check error logs.");
+    ROS_INFO("Did not construct TrepROS object properly. Check error logs.");
     return false;
   }
   if (joint_angles.size() != num_joints_)
@@ -231,7 +230,7 @@ bool TrepROS::getMaxPayload(const std::vector<double> &joint_angles,
 {
   if (!joint_model_group_)
   {
-    logDebug("Did not construct TrepROS object properly. Check error logs.");
+    ROS_INFO("Did not construct TrepROS object properly. Check error logs.");
     return false;
   }
   if (joint_angles.size() != num_joints_)
@@ -264,7 +263,7 @@ bool TrepROS::getMaxPayload(const std::vector<double> &joint_angles,
   wrenches.back().force = transformVector(transform, wrenches.back().force);
   wrenches.back().torque = transformVector(transform, wrenches.back().torque);
 
-  logDebug("New wrench (local frame): %f %f %f", wrenches.back().force.x, wrenches.back().force.y, wrenches.back().force.z);
+  ROS_INFO("New wrench (local frame): %f %f %f", wrenches.back().force.x, wrenches.back().force.y, wrenches.back().force.z);
 
   if (!getTorques(joint_angles, joint_velocities, joint_accelerations, wrenches, torques))
     return false;
@@ -272,9 +271,10 @@ bool TrepROS::getMaxPayload(const std::vector<double> &joint_angles,
   double min_payload = std::numeric_limits<double>::max();
   for (unsigned int i = 0; i < num_joints_; ++i)
   {
-    double payload_joint = std::max<double>((max_torques_[i]-zero_torques[i])/(torques[i]-zero_torques[i]),(-max_torques_[i]-zero_torques[i])/(torques[i]-zero_torques[i]));//because we set the payload to 1.0
-    logDebug("Joint: %d, Actual Torque: %f, Max Allowed: %f, Gravity: %f", i, torques[i], max_torques_[i], zero_torques[i]);
-    logDebug("Joint: %d, Payload Allowed (N): %f", i, payload_joint);
+    double payload_joint = std::max<double>((max_torques_[i]-zero_torques[i])/(torques[i]-zero_torques[i]),
+                           (-max_torques_[i]-zero_torques[i])/(torques[i]-zero_torques[i]));//because we set the payload to 1.0
+    ROS_INFO("Joint: %d, Actual Torque: %f, Max Allowed: %f, Gravity: %f", i, torques[i], max_torques_[i], zero_torques[i]);
+    ROS_INFO("Joint: %d, Payload Allowed (N): %f", i, payload_joint);
     if (payload_joint < min_payload)
     {
       min_payload = payload_joint;
@@ -282,7 +282,7 @@ bool TrepROS::getMaxPayload(const std::vector<double> &joint_angles,
     }
   }
   payload = min_payload/gravity_;
-  logDebug("Max payload (kg): %f", payload);
+  ROS_INFO("Max payload (kg): %f", payload);
   return true;
 }
 
@@ -292,7 +292,7 @@ bool TrepROS::getPayloadTorques(const std::vector<double> &joint_angles,
 {
   if (!joint_model_group_)
   {
-    logDebug("Did not construct TrepROS object properly. Check error logs.");
+    ROS_INFO("Did not construct TrepROS object properly. Check error logs.");
     return false;
   }
   if (joint_angles.size() != num_joints_)
@@ -316,7 +316,7 @@ bool TrepROS::getPayloadTorques(const std::vector<double> &joint_angles,
   wrenches.back().force = transformVector(transform, wrenches.back().force);
   wrenches.back().torque = transformVector(transform, wrenches.back().torque);
 
-  logDebug("New wrench (local frame): %f %f %f", wrenches.back().force.x, wrenches.back().force.y, wrenches.back().force.z);
+  ROS_INFO("New wrench (local frame): %f %f %f", wrenches.back().force.x, wrenches.back().force.y, wrenches.back().force.z);
 
   if (!getTorques(joint_angles, joint_velocities, joint_accelerations, wrenches, joint_torques))
     return false;
@@ -325,12 +325,9 @@ bool TrepROS::getPayloadTorques(const std::vector<double> &joint_angles,
 
 void TrepROS::runTest()
 {
-  std::vector<double> joint_angles;
-
-  for (std::size_t i = 0; i < 7; ++i)
-  {
-    joint_angles.push_back(0.2);
-  }
+  //double vv[7] = {0.0005198528482007326, -0.026568703427509225, 0.001412584336410746, -0.04993864143827908, 0.001677466537807731, 0.16017390301636628, 0.0013131872849627454 };
+  double vv[7] = {0, 0, 0, 0, 0, 0, 0};
+  std::vector<double> joint_angles(&vv[0], &vv[0]+7);
 
   std::vector<double> joint_velocities(num_joints_, 0.0);
   std::vector<double> joint_accelerations(num_joints_, 0.0);
@@ -340,7 +337,12 @@ void TrepROS::runTest()
 
   getTorques(joint_angles, joint_velocities, joint_accelerations, wrenches, zero_torques);
 
-  std::copy(zero_torques.begin(), zero_torques.end(), std::ostream_iterator<double>(std::cout, "\n"));
+  // Display results
+  const std::vector<std::string> &joint_model_names = joint_model_group_->getJointModelNames();
+  for (std::size_t i = 0; i < joint_model_names.size(); ++i)
+  {
+    ROS_INFO_STREAM_NAMED("temp","Joint " << joint_model_names[i] << " has torque: " << zero_torques[i]);
+  }
 }
 
 const std::vector<double>& TrepROS::getMaxTorques() const

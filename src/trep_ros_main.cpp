@@ -77,26 +77,45 @@ int main(int argc, char** argv)
   // Get the robot model from the loader
   const robot_model::RobotModelPtr robot_model = rloader.getModel();
 
-  const std::string group_name = "left_arm";
+  const std::string group_name = "right_arm";
 
-  // Leave empty for now
-  const geometry_msgs::Vector3 gravity_vector;
+  // Gravity
+  geometry_msgs::Vector3 gravity_vector;
+  gravity_vector.x = 0;
+  gravity_vector.y = 0;
+  gravity_vector.z = -9.81;
 
   // Initiate
   trep_ros::TrepROS tester(robot_model, group_name, gravity_vector);
 
   // Do Calc ----------------------------------------------------------------------
-  //  tester.runTest();
+  tester.runTest();
+
   std::vector<double> joint_angles;
   for (std::size_t i = 0; i < 7; ++i)
   {
-    joint_angles.push_back(0.2);
+    joint_angles.push_back(0.0);
   }
   double payload;
-  unsigned int joint_saturated;
-  tester.getMaxPayload(joint_angles, payload, joint_saturated);
-  ROS_INFO_STREAM_NAMED("temp","joint: " << joint_saturated << " Payload: " << payload);
 
+  // get max payload
+  /*
+  unsigned int joint_saturated;
+  if( !tester.getMaxPayload(joint_angles, payload, joint_saturated) )
+    ROS_ERROR_STREAM_NAMED("temp","wrong size joints");
+
+  ROS_INFO_STREAM_NAMED("temp","joint: " << joint_saturated << " Payload: " << payload);
+  */
+
+  // get payload torques
+  payload = 2;
+  std::vector<double> joint_torques(7, 0.0);
+  if( !tester.getPayloadTorques(joint_angles, payload, joint_torques) )
+    ROS_ERROR_STREAM_NAMED("temp","wrong size joints");
+
+  std::copy(joint_torques.begin(), joint_torques.end(), std::ostream_iterator<double>(std::cout, "\n"));      
+
+  // done
   ROS_INFO_STREAM_NAMED("trep_ros","Shutting down.");
 
   return 0;
